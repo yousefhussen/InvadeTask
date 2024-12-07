@@ -1,0 +1,13 @@
+.center {
+    text-align: center;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  button {
+    margin: 8px;
+  }

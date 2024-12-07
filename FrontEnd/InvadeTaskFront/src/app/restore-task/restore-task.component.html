@@ -1,0 +1,13 @@
+<h2 class="center">Restore Task</h2>
+<div *ngIf="tasks.length > 0" class="task-list">
+  <ul>
+    <li *ngFor="let task of tasks">
+      {{ task.title }}
+      <button mat-raised-button color="primary" (click)="restoreTask(task.id)">Restore</button>
+      <button mat-raised-button color="warn" (click)="deleteTask(task.id)">Delete</button>
+    </li>
+  </ul>
+</div>
+<div *ngIf="tasks.length === 0" class="no-tasks">
+  <p>No deleted tasks available to restore.</p>
+</div>

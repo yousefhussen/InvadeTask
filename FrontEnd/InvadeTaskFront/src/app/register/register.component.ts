@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,12 +12,17 @@ export class RegisterComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = ''; 
+  
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService , private router: Router) {}
 
   register() {
     this.authService.getCsrfToken().subscribe(() => {
-      this.authService.register(this.name, this.email, this.password, this.confirmPassword).subscribe();
+      this.authService.register(this.name, this.email, this.password, this.confirmPassword).subscribe(
+        () => {
+          this.router.navigate(['/']);
+        }
+      );
     });
   }
 }

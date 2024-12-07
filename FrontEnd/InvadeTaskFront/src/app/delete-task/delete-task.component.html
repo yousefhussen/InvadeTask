@@ -1,0 +1,6 @@
+<h2 class="center">Delete Task</h2>
+<div *ngIf="task" class="task-details">
+  <p>Are you sure you want to delete the task <strong>{{ task.title }}</strong>?</p>
+  <button mat-raised-button color="warn" (click)="deleteTask()">Yes</button>
+  <button mat-raised-button color="primary" routerLink="/list">No</button>
+</div>

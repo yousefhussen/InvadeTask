@@ -10,9 +10,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ProtectedComponent } from './protected/protected.component';
-import { AuthInterceptor } from './auth.interceptor';
+import { ListComponent } from './List/list.component';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AddTaskComponent } from './add-task/add-task.component';
+import { UpdateTaskComponent } from './update-task/update-task.component';
+import { DeleteTaskComponent } from './delete-task/delete-task.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { RestoreTaskComponent } from './restore-task/restore-task.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { DeleteCategoryComponent } from './delete-category/delete-category.component';
+
 
 
 @NgModule({
@@ -20,7 +35,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ProtectedComponent
+    ListComponent,
+    NavbarComponent,
+    AddTaskComponent,
+    UpdateTaskComponent,
+    DeleteTaskComponent,
+    RestoreTaskComponent,
+    CategoryListComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    DeleteCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -28,10 +52,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     MatInputModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatCardModule,
     FormsModule,
     AppRoutingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatIconModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

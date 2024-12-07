@@ -1,0 +1,15 @@
+.center {
+    text-align: center;
+  }
+  
+  .category-card {
+    margin: 16px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  button {
+    margin-right: 8px;
+  }

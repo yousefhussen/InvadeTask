@@ -1,0 +1,24 @@
+<nav class="navbar">
+    <div class="navbar-left">
+      <img src="/favicon.ico" alt="App Logo" class="logo" routerLink="/">
+      <span class="app-name" routerLink="/">ToDo</span>
+
+      <a mat-button routerLink="/list" *ngIf="isAuthenticated">List</a>
+      <!-- red trash bin icon -->
+
+      <a mat-button routerLink="/Recycle" *ngIf="isAuthenticated">
+        <mat-icon color="warn">delete</mat-icon>
+        Recycle
+      </a>
+      <!-- categories tap -->
+      <a mat-button routerLink="/categories" *ngIf="isAuthenticated">
+        <mat-icon>category</mat-icon>
+        Categories
+      </a>
+      
+    </div>
+    <div class="navbar-right">
+      <span *ngIf="isAuthenticated" class="greeting">Hello, {{ userName }}</span>
+      <button *ngIf="isAuthenticated" mat-button (click)="logout()">Logout</button>
+    </div>
+  </nav>

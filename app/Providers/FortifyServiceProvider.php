@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -42,7 +43,16 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             public function toResponse($request): JsonResponse
             {
+                if (Auth::attempt($request->only('email', 'password'))) {
+                    $user = User::where('email', $request->email)->first();
+
+                    return response()->json([
+                        "message" => "You are successfully logged in",
+                        "token" => $user->createToken($request->email)->plainTextToken,
+                    ], 200);
+                }
                 $user = User::where('email', $request->email)->first();
+
 
                 if ($user->tokens()->count() > 0) {
 

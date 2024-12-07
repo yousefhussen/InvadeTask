@@ -1,0 +1,28 @@
+.center {
+    text-align: center;
+  }
+  
+  .task-list {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .no-tasks {
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  button {
+    margin-left: 16px;
+  }
