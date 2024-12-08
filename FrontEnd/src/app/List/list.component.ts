@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../services/auth/task/task.service';
 import { Task, Category } from '../Models/Task';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -10,6 +11,7 @@ import { Task, Category } from '../Models/Task';
 export class ListComponent implements OnInit {
   tasks: Task[] = [];
   categories: Category[] = [];
+  private searchTerms = new Subject<string>();
   search: string = '';
   filters: any = {};
   page: number = 1;
@@ -23,6 +25,12 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategories();
     this.loadTasks();
+    this.searchTerms.pipe(
+      debounceTime(300) 
+    ).subscribe(term => {
+      this.search = term;
+      this.loadTasks();
+    });
   }
 
   loadTasks(): void {
@@ -50,8 +58,7 @@ export class ListComponent implements OnInit {
 
   onSearchChange(event: Event): void {
     const target = event.target as HTMLInputElement;
-    this.search = target.value;
-    this.loadTasks();
+    this.searchTerms.next(target.value);
   }
 
   onFilterChange(event: Event, filterKey: string): void {
